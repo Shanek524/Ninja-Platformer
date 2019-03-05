@@ -1,0 +1,62 @@
+game.world.currentMap.forEach(e => {
+                i++;
+                switch (e) {
+                    case 0: // Sky
+                        bctx.fillStyle = "#167EAB";
+                        bctx.fillRect(x, y, blockWidth, blockHeight);
+                        x+= blockWidth;
+                        if(game.world.added === false){
+                            engine.collision.trianglesx.push(x - blockWidth);
+                            engine.collision.trianglesx2.push(x);
+                            engine.collision.trianglesy.push(y);
+                            game.world.increment = true;
+                            
+                        }
+                        
+                        
+                        break;
+                
+                    case 1: // Normal platform
+                        bctx.fillStyle = "#AB0032";
+                        bctx.fillRect(x, y, blockWidth, blockHeight);
+                        x+= blockWidth;
+                        if(game.world.added === false){
+                            engine.collision.trianglesx.push(x - blockWidth);
+                            engine.collision.trianglesx2.push(x);
+                            engine.collision.trianglesy.push(y);
+                            game.world.increment = true;
+                        }                                    
+                        break;
+    
+                    case 2: // Player start
+                    game.gamemode.playerSpawn.x = x + blockWidth/2 - 12.5;
+                    game.gamemode.playerSpawn.y = y;
+                        bctx.fillStyle = "#73AB60";
+                        bctx.fillRect(x, y, blockWidth, blockHeight);
+                        x+= blockWidth;
+                        if(game.world.added === false){
+                            engine.collision.trianglesx.push(x - blockWidth);
+                            engine.collision.trianglesx2.push(x);
+                            engine.collision.trianglesy.push(y);
+                            game.gamemode.startGame();
+                            game.world.increment = true;
+                        }                                    
+                        break;
+    
+                    case 3: // Goal              
+                        game.gamemode.goal.x = x; 
+                        game.gamemode.goal.y = y;  
+                        game.gamemode.goal.x2 = x + blockWidth;
+                        game.gamemode.goal.y2= y + blockHeight; 
+                        bctx.fillStyle = "#000000";
+                        bctx.fillRect(x, y, blockWidth, blockHeight);
+                        x+= blockWidth;
+                        if(game.world.added === false){
+                            engine.collision.trianglesx.push(x - blockWidth);
+                            engine.collision.trianglesx2.push(x);
+                            engine.collision.trianglesy.push(y);
+                            game.world.increment = true;
+                            }                                    
+                        break;
+                }
+},
